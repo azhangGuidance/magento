@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default>
+        <reference name="top.links">
+            <remove name="checkout_cart_link" />
+        </reference>
+        <reference name="right">
+            <remove name="catalog.compare.sidebar"/>
+            <remove name="cart_sidebar"/>
+            <remove name="paypal.partner.right.logo"/>
+            <remove name="right.poll"/>
+            <remove name="right.reports.product.viewed"/>
+            <remove name="right.reports.product.compared"/>
+        </reference>
+    </default>
+</layout>

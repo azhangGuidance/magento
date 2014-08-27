@@ -1,0 +1,59 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2013 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<div id="slider">
+    <div class="slidercontrolwr">
+        <div class="slidercontrol">
+            <a href="#section1" title="Slide 1" class="">1</a>
+            <a href="#section2" title="Slide 2" class="">2</a>
+            <a href="#section3" title="Slide 3" class="">3</a>
+            <a href="#section4" title="Slide 4" class="">4</a>
+            <a href="#section5" title="Slide 5" class="">5</a>
+        </div>
+    </div>
+    <div class="scroller">
+        <div class="content">
+            <div class="sectionslide" id="section1">
+                <a href=""><img src="<?php echo $this->getSkinUrl("images/slider/slider1.jpg")?>" alt="" /></a>
+            </div>
+            <div class="sectionslide" id="section2">
+                <a href=""><img src="<?php echo $this->getSkinUrl("images/slider/slider2.jpg")?>" alt="" /></a>
+            </div>
+            <div class="sectionslide" id="section3">
+                <a href=""><img src="<?php echo $this->getSkinUrl("images/slider/slider3.jpg")?>" alt="" /></a>
+            </div>
+            <div class="sectionslide" id="section4">
+                <a href=""><img src="<?php echo $this->getSkinUrl("images/slider/slider4.jpg")?>" alt="" /></a>
+            </div>
+            <div class="sectionslide" id="section5">
+                <a href=""><img src="<?php echo $this->getSkinUrl("images/slider/slider5.jpg")?>" alt="" /></a>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" charset="utf-8">
+    var my_glider = new Glider('slider', {duration:0.5, autoGlide: true, frequency: 4, initialSection: 'section1'});
+</script>

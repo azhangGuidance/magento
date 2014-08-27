@@ -19,10 +19,10 @@ class TM_Featured_Block_Featured extends Mage_Catalog_Block_Product_Abstract
             ->setCurPage(1);
 
         try {
-            if (!$collection->getAttribute("featured")) { // Mage 1.6.0.0 fix
-                throw new Exception("Attribute featured not found");
+            if (!$collection->getAttribute("is_featured")) { // Mage 1.6.0.0 fix
+                throw new Exception("Attribute is_featured not found");
             }
-            $collection->addAttributeToFilter("featured", array('Yes' => true));
+            $collection->addAttributeToFilter("is_featured", array('Yes' => true));
         } catch (Exception $e) {
             $collection = false;
         }
