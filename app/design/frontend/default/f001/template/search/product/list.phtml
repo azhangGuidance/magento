@@ -41,7 +41,7 @@
 <div class="category-products">
     <?php echo $this->getToolbarHtml() ?>
     <?php // List mode ?>
-    <?php if($this->getMode()!='grid'): ?>
+    <?php if($this->getMode()=='list'): ?>
     <?php $_iterator = 0; ?>
     <ol class="products-list" id="products-list">
     <?php foreach ($_productCollection as $_product): ?>
@@ -49,7 +49,7 @@
             <?php // Product Image ?>
             <p class="product-image">
                 <a href="<?php echo $this->getUrl('ajax/product/quickview/id/' . $_product->getId()) ?>" rel="nofollow" title="<?php echo $this->escapeHtml($_product->getName()) ?>" class="ajax"><?php echo $this->__('Quick view') ?></a>
-                <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(135); ?>" width="135" height="135" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" /></a>                
+                <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(135); ?>" width="135" height="135" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" /></a>
             </p>
             <?php // Product description ?>
             <div class="product-shop">
@@ -78,38 +78,52 @@
 
     <?php else: ?>
 
-    <?php // Grid Mode ?>
-
-    <?php $_collectionSize = $_productCollection->count() ?>
-    <?php $_columnCount = $this->getColumnCount(); ?>
-    <?php $i=0; foreach ($_productCollection as $_product): ?>
-        <?php if ($i++%$_columnCount==0): ?>
-        <ul class="products-grid">
-        <?php endif ?>
-            <li class="item<?php if(($i-1)%$_columnCount==0): ?> first<?php elseif($i%$_columnCount==0): ?> last<?php endif; ?>">
-                <p class="product-image">
-                    <a href="<?php echo $this->getUrl('ajax/product/quickview/id/' . $_product->getId()) ?>" rel="nofollow" title="<?php echo $this->escapeHtml($_product->getName()) ?>" class="ajax"><?php echo $this->__('Quick view') ?></a>
-                    <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image">
-                            <img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(135); ?>" width="135" height="135" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />
-                    </a>
-                </p>
-                <h2 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($_product->getName(), null, true) ?>"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></a></h2>
-                <?php if($_product->getRatingSummary()): ?>
-                <?php echo $this->getReviewsSummaryHtml($_product, 'short') ?>
-                <?php endif; ?>
-                <div class="actions">
-                    <ul class="add-to-links">
-                        <?php if ($this->helper('wishlist')->isAllow()) : ?>
-                            <li><a href="<?php echo $this->helper('wishlist')->getAddUrl($_product) ?>" class="link-wishlist"><?php echo $this->__('Add to Wishlist') ?></a></li>
-                        <?php endif; ?>
-                    </ul>
-                </div>
-            </li>
-        <?php if ($i%$_columnCount==0 || $i==$_collectionSize): ?>
-        </ul>
-        <?php endif ?>
-        <?php endforeach ?>
-        <script type="text/javascript">decorateGeneric($$('ul.products-grid'), ['odd','even','first','last'])</script>
+    <?php // Map Mode ?>
+    <div id="merchant-list-google-map"></div>
+    <script type="text/javascript">
+        var map;
+        var infowindow = new google.maps.InfoWindow();
+            function initialize() {
+                var locations = [];
+                <?php $i=0; foreach ($_productCollection as $_product): ?>
+                    <?php if($_product->getLatitude() && $_product->getLongitude()):?>
+                        locations[<?php echo $i?>] = ["<?php echo $this->__($_product->getName())?>",<?php echo $_product->getLatitude()?>,<?php echo $_product->getLongitude() ?>];
+                    <?php $i++;endif;?>
+                <?php endforeach?>
+                <?php if($search = Mage::registry('search_query')){
+                    $loc = Mage::helper('setup')->fetchLocationCoordinates($search['location']);
+                }?>
+                <?php if(isset($loc['lat']) && isset($loc['lng'])):?>
+                    var lat = <?php echo $loc['lat']?>;
+                    var lng = <?php echo $loc['lng']?>;
+                    <?php else:?>
+                    var lat = locations[0][1];
+                    var lng = locations[0][2];
+                    <?php endif;?>
+                var mapOptions = {
+                    center: { lat: lat, lng: lng},
+                    zoom: 10
+                };
+                var map = new google.maps.Map(document.getElementById('merchant-list-google-map'),
+                        mapOptions);
+                var  marker, i;
+                for (i = 0; i < locations.length; i++) {
+                    marker = new google.maps.Marker({
+                        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                        title: locations[i][0]
+                    });
+                    marker.setMap(map);
+                    bindInfoWindow(marker, map, infowindow, locations[i][0]);
+                }
+            }
+        function bindInfoWindow(marker, map, infowindow, strDescription) {
+            google.maps.event.addListener(marker, 'click', function() {
+                infowindow.setContent(strDescription);
+                infowindow.open(map, marker);
+            });
+        }
+            google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
     <?php endif; ?>
 
     <div class="toolbar-bottom">

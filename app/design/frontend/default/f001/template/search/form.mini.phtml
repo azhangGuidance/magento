@@ -1,0 +1,27 @@
+<?php
+
+?>
+<form id="search_mini_form" action="<?php echo $this->getUrl('search/result/index') ?>" method="get"
+      xmlns="http://www.w3.org/1999/html">
+    <div class="form-search">
+        <?php
+            $categories = Mage::getModel('catalog/category')
+                            ->getCollection()
+                            ->addFieldToFilter('is_active', array('eq'=>'1'))
+                            ->addFieldToFilter('level',2);
+
+        ?>
+        <select id="select_category" name="category_id">
+            <?php foreach($categories as $category):?>
+                <?php $category = Mage::getModel('catalog/category')->load($category->getId())?>
+                <option value="<?php echo $category->getId()?>"><?php echo $category->getName()?></option>
+            <?php endforeach?>
+        </select>
+        <span><?php echo $this->__('within')?></span></br>
+        <input id="distance" type="text" name="distance" placeholder="<?php echo $this->__("type a number")?>"/><span><?php echo $this->__('miles')?></span><br/>
+        <span><?php echo $this->__('from')?></span><input name="location" id="search-location" type="text" placeholder="<?php echo $this->__("Type a location or zip")?>"/>
+        <button type="submit" title="<?php echo $this->__('Search') ?>" class="button">
+            <span><span><?php echo $this->__('Search') ?></span></span>
+        </button>
+    </div>
+</form>

@@ -34,8 +34,6 @@
         <?php else:?>
         <a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>" class="logo"><strong><?php echo $this->getLogoAlt() ?></strong><img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" /></a>
         <?php endif?>
-        <p class="no-display"><a href="#main"><strong><?php echo $this->__('Skip to Main Content') ?> &raquo;</strong></a></p>
-        <?php echo $this->getChildHtml('topSearch') ?>
         <div class="quick-access">
             <p class="welcome-msg"><?php echo $this->getChildHtml('welcome') ?> <?php echo $this->getAdditionalHtml() ?></p>
             <div class="shop-access">

@@ -10,7 +10,8 @@ $layout = <<<EOT
   <action method="addItem"><type>skin_js</type><name>js/productInfo.js</name></action>
 </reference>
 <reference name="right">
-  <block type="core/template" name="right.callout1" template="callouts/left_col.phtml" before="-">
+  <block type="core/template" name="customize.search" template="search/form.mini.phtml" />
+  <block type="core/template" name="right.callout1" template="callouts/left_col.phtml">
     <action method="setImgSrc"><src>images/media/callout_side1.jpg</src></action>
     <action method="setImgAlt" translate="alt" module="catalog"><alt>Call Us Toll Free. (555) 555-555</alt></action>
     <action method="setLinkUrl"><url></url></action>
@@ -22,6 +23,7 @@ $layout = <<<EOT
   </block>
 </reference>
 <reference name="content">
+  <block type="core/template" name="home.google.map" template="page/html/map.phtml"/>
   <block type="core/template" name="home.slider" template="page/html/homeslider.phtml"/>
 </reference>
 <reference name="before_footer">

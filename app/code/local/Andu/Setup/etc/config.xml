@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Andu_Setup>
-            <version>1.4.0</version>
+            <version>1.5.0</version>
         </Andu_Setup>
     </modules>
     <global>
@@ -16,6 +16,11 @@
                 <class>Andu_Setup_Model</class>
                 <resourceModel>setup_mysql4</resourceModel>
             </setup>
+            <catalog>
+                <rewrite>
+                    <resource_product_collection>Andu_Setup_Model_Rewrite_Source_Product_Collection</resource_product_collection>
+                </rewrite>
+            </catalog>
         </models>
         <resources>
             <andu_setup>
@@ -28,5 +33,16 @@
                 </connection>
             </andu_setup>
         </resources>
+        <events>
+            <catalog_product_save_before>
+                <observers>
+                    <setup>
+                        <type>singleton</type>
+                        <class>setup/observer</class>
+                        <method>updateProduct</method>
+                    </setup>
+                </observers>
+            </catalog_product_save_before>
+        </events>
     </global>
 </config> 
