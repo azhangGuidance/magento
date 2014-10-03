@@ -33,7 +33,7 @@ require_once 'abstract.php';
  * @package     Mage_Shell
  * @author      Magento Core Team <core@magentocommerce.com>
  */
-class Mage_Shell_ProductImageImport extends Mage_Shell_Abstract
+class Mage_Shell_ProductUpdate extends Mage_Shell_Abstract
 {
     public function run(){
         Mage::register('isSecureArea', 1);
@@ -50,5 +50,5 @@ class Mage_Shell_ProductImageImport extends Mage_Shell_Abstract
     }
 }
 
-$shell = new Mage_Shell_ProductImageImport();
+$shell = new Mage_Shell_ProductUpdate();
 $shell->run();
