@@ -59,7 +59,6 @@
 
     <?php if( $this->isExpanded() ): ?>
     <div class="sorter">
-        <?php if($this->getCurrentMode()!='map'):?>
         <div class="sort-by">
             <label><?php echo $this->__('Sort By') ?></label>
             <select onchange="setLocation(this.value)">
@@ -76,7 +75,6 @@
             <a href="<?php echo $this->getOrderUrl(null, 'desc') ?>" title="<?php echo $this->__('Set Descending Direction') ?>"><img src="<?php echo $this->getSkinUrl('images/i_asc_arrow.gif') ?>" alt="<?php echo $this->__('Set Descending Direction') ?>" class="v-middle" /></a>
             <?php endif; ?>
         </div>
-        <?php endif;?>
     </div>
     <?php endif; ?>
 </div>
