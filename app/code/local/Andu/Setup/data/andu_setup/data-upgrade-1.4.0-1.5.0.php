@@ -19,7 +19,7 @@ $attributes = array(
         'searchable'        => 0,
         'filterable'        => 0,
         'comparable'        => 0,
-        'visible_on_front'  => 1,
+        'visible_on_front'  => 0,
         'unique'            => 0,
     ),
     'longitude' => array (
@@ -36,7 +36,7 @@ $attributes = array(
         'searchable'        => 0,
         'filterable'        => 0,
         'comparable'        => 0,
-        'visible_on_front'  => 1,
+        'visible_on_front'  => 0,
         'unique'            => 0,
     )
 
