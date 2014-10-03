@@ -40,8 +40,6 @@ $_helper = $this->helper('catalog/output');
 <?php else: ?>
 <div class="category-products">
     <?php echo $this->getToolbarHtml() ?>
-    <?php // List mode ?>
-    <?php if($this->getMode()=='list'): ?>
     <?php $_iterator = 0; ?>
     <ol class="products-list" id="products-list">
         <?php foreach ($_productCollection as $_product): ?>
@@ -86,6 +84,5 @@ $_helper = $this->helper('catalog/output');
         <?php endforeach; ?>
     </ol>
     <script type="text/javascript">decorateList('products-list', 'none-recursive')</script>
-    <?php endif; ?>
 </div>
 <?php endif; ?>
