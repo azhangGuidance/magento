@@ -41,7 +41,10 @@ class Mage_Shell_ProductImageImport extends Mage_Shell_Abstract
         Mage::app()->setCurrentStore(Mage_Core_Model_App::ADMIN_STORE_ID);
         $products = Mage::getModel('catalog/product')->getCollection();
         foreach ($products as $product){
-            $product->save();
+            $product = Mage::getModel('catalog/product')->load($product->getId());
+            if(!$product->getLatitude() || !$product->getLongitude()){
+                Mage::helper('setup')->fetchProductCoordinates($product);
+            }
         }
         Mage::unregister('isSecureArea');
     }
