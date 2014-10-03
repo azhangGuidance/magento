@@ -4,7 +4,7 @@ $installer->startSetup();
 
 Mage::register('isSecureArea', 1);
 Mage::app()->setUpdateMode(false);
-
+Mage::app()->setCurrentStore(Mage_Core_Model_App::ADMIN_STORE_ID);
 $rootCategoryId = Mage::app()->getStore()->getRootCategoryId();
 $rootCategory = Mage::getModel('catalog/category')->load($rootCategoryId);
 $categories = array('Restaurant','Coffee Bar & Tea House','Bars','Rental');
