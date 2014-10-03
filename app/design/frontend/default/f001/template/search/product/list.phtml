@@ -32,7 +32,7 @@
  */
 ?>
 <?php
-    $_productCollection=$this->getLoadedProductCollection();
+    $_productCollection = $this->getLoadedProductCollection();
     $_helper = $this->helper('catalog/output');
 ?>
 <?php if(!$_productCollection->count()): ?>
@@ -60,10 +60,27 @@
                     <?php echo $this->getReviewsSummaryHtml($_product) ?>
                     <?php endif; ?>
                     <div class="clear"></div>
-                    <div class="desc std">
-                        <?php echo $_helper->productAttribute($_product, $_product->getShortDescription(), 'short_description') ?>
-                        <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $_productNameStripped ?>" class="link-learn"><?php echo $this->__('Learn More') ?></a>
+                    <?php if($_product->getDescription()):?>
+                        <div class="desc std">
+                            <?php echo $this->__($_product->getDescription())?>
+                        </div>
+                    <?php endif;?>
+                    <?php if($_product->getAddressDisplay()):?>
+                        <div class="address">
+                            <?php echo $this->__($_product->getAddressDisplay())?>
+                        </div>
+                    <?php endif;?>
+                    <?php if($_product->getLatitude() && $_product->getLongitude() && Mage::registry('search_lat') && Mage::registry('search_lng')):?>
+                        <div class="distance">
+                            <span><?php echo $this->__('Distance: ')?></span>
+                            <span><?php echo $this->calculateDistance($_product->getLatitude(), $_product->getLongitude(), Mage::registry('search_lat'), Mage::registry('search_lng')).$this->__(' miles')?></span>
+                        </div>
+                    <?php endif;?>
+                    <?php if($_product->getPriceRange()):?>
+                    <div class="price_range">
+                        <span> <?php echo $this->__('Price: ')?><?php echo $this->__($_product->getAttributeText('price_range'))?></span>
                     </div>
+                    <?php endif;?>
                     <ul class="add-to-links">
                         <?php if ($this->helper('wishlist')->isAllow()) : ?>
                             <li><a href="<?php echo $this->helper('wishlist')->getAddUrl($_product) ?>" class="link-wishlist"><?php echo $this->__('Add to Wishlist') ?></a></li>
@@ -86,8 +103,21 @@
             function initialize() {
                 var locations = [];
                 <?php $i=0; foreach ($_productCollection as $_product): ?>
+                    <?php
+                        $marker = '<a href="'.$_product->getProductUrl().'">'.$this->__($_product->getName()).'</a>';
+                        if($_product->getRatingSummary()){
+                            $marker.= $this->getReviewsSummaryHtml($_product);
+                        }
+                        if($_product->getDescription()){
+                            $maker.='<div class="desc std">'.$this->__($_product->getDescription()).'</div>';
+                        }
+                        if($_product->getAddressDisplay()){
+                           $marker.='<div class="address">'.$this->__($_product->getAddressDisplay()).'</div>';
+                        }
+                        $marker=str_replace(array("\r\n", "\n", "\r"),' ',$marker);
+                    ?>
                     <?php if($_product->getLatitude() && $_product->getLongitude()):?>
-                        locations[<?php echo $i?>] = ["<?php echo $this->__($_product->getName())?>",<?php echo $_product->getLatitude()?>,<?php echo $_product->getLongitude() ?>];
+                        locations[<?php echo $i?>] = ['<?php echo $marker?>',<?php echo $_product->getLatitude()?>,<?php echo $_product->getLongitude() ?>];
                     <?php $i++;endif;?>
                 <?php endforeach?>
                 <?php if($search = Mage::registry('search_query')){
@@ -125,9 +155,5 @@
             google.maps.event.addDomListener(window, 'load', initialize);
     </script>
     <?php endif; ?>
-
-    <div class="toolbar-bottom">
-        <?php echo $this->getToolbarHtml() ?>
-    </div>
 </div>
 <?php endif; ?>

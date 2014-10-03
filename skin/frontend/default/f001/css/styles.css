@@ -1802,3 +1802,9 @@ float:right; font-size:0.9em; margin-top:5px; padding:2px 2px 2px 0; width:125px
 #search_mini_form .form-search input#search-location{
     margin-left:5px;
 }
+#merchant-map{
+    width: 400px;
+    height:200px;
+    float: left;
+    left:100px;
+}

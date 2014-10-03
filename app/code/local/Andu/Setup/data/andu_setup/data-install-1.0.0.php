@@ -19,7 +19,7 @@ $attributes = array(
         'searchable'        => 0,
         'filterable'        => 0,
         'comparable'        => 0,
-        'visible_on_front'  => 1,
+        'visible_on_front'  => 0,
         'unique'            => 0,
         'source'             => 'eav/entity_attribute_source_boolean'
     ),
@@ -54,7 +54,7 @@ $attributes = array(
         'searchable'        => 0,
         'filterable'        => 0,
         'comparable'        => 0,
-        'visible_on_front'  => 1,
+        'visible_on_front'  => 0,
         'unique'            => 0,
     ),
     'street_line_2' => array (
@@ -71,7 +71,7 @@ $attributes = array(
         'searchable'        => 0,
         'filterable'        => 0,
         'comparable'        => 0,
-        'visible_on_front'  => 1,
+        'visible_on_front'  => 0,
         'unique'            => 0,
     ),
     'city' => array (
@@ -88,7 +88,7 @@ $attributes = array(
         'searchable'        => 0,
         'filterable'        => 0,
         'comparable'        => 0,
-        'visible_on_front'  => 1,
+        'visible_on_front'  => 0,
         'unique'            => 0,
     ),
     'state' => array (
@@ -105,7 +105,7 @@ $attributes = array(
         'searchable'        => 0,
         'filterable'        => 0,
         'comparable'        => 0,
-        'visible_on_front'  => 1,
+        'visible_on_front'  => 0,
         'unique'            => 0,
     ),
     'zipcode' => array (
@@ -122,7 +122,7 @@ $attributes = array(
         'searchable'        => 0,
         'filterable'        => 0,
         'comparable'        => 0,
-        'visible_on_front'  => 1,
+        'visible_on_front'  => 0,
         'unique'            => 0,
     ),
     'neighborhood' => array (

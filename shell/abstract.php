@@ -173,9 +173,9 @@ abstract class Mage_Shell_Abstract
      */
     protected function _validate()
     {
-        if (isset($_SERVER['REQUEST_METHOD'])) {
-            die('This script cannot be run from Browser. This is the shell script.');
-        }
+//        if (isset($_SERVER['REQUEST_METHOD'])) {
+//            die('This script cannot be run from Browser. This is the shell script.');
+//        }
     }
 
     /**

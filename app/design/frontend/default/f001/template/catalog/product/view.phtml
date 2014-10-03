@@ -51,35 +51,40 @@
                 <h1><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h1>
             </div>
 
-            <?php if ($this->canEmailToFriend()): ?>
-                <p class="email-friend"><a href="<?php echo $this->helper('catalog/product')->getEmailToFriendUrl($_product) ?>"><?php echo $this->__('Email to a Friend') ?></a></p>
-            <?php endif; ?>
-
             <?php echo $this->getReviewsSummaryHtml($_product, false, true)?>
-            <?php echo $this->getChildHtml('alert_urls') ?>
-            <?php echo $this->getChildHtml('product_type_data') ?>
-            <?php echo $this->getTierPriceHtml() ?>
-            <?php echo $this->getChildHtml('extrahint') ?>
                 <div class="add-to-box">
                     <?php echo $this->getChildHtml('addto') ?>
                 </div>
-                <?php echo $this->getChildHtml('extra_buttons') ?>
-
-            <?php if ($_product->getShortDescription()):?>
-                <div class="short-description">
-                    <h2><?php echo $this->__('Quick Overview') ?></h2>
-                    <div class="std"><?php echo $_helper->productAttribute($_product, nl2br($_product->getShortDescription()), 'short_description') ?></div>
-                </div>
-            <?php endif;?>
-
-            <?php echo $this->getChildHtml('other');?>
 
         </div>
 
         <div class="product-img-box">
             <?php echo $this->getChildHtml('media') ?>
         </div>
+        <?php if($_product->getLatitude()&& $_product->getLongitude()):?>
+        <div id="merchant-map"></div>
+        <script type="text/javascript">
+            var map;
+            function initialize() {
+                var mapOptions = {
+                    zoom: 15
+                };
+                map = new google.maps.Map(document.getElementById('merchant-map'),
+                        mapOptions);
+                var lat = <?php echo $_product->getLatitude()?>;
+                var lng = <?php echo $_product->getLongitude()?>;
+                var pos = new google.maps.LatLng(lat,lng);
+                var marker = new google.maps.Marker({
+                            position: pos,
+                            title:"<?php echo $_product->getName()?>"
+                        });
+                marker.setMap(map);
+                map.setCenter(pos);
 
+            }
+            google.maps.event.addDomListener(window, 'load', initialize);
+        </script>
+        <?php endif;?>
         <div class="clearer"></div>
     </form>
     <script type="text/javascript">
@@ -134,15 +139,14 @@
     //]]>
     </script>
     </div>
-
     <div class="product-collateral">
-<?php foreach ($this->getChildGroup('detailed_info', 'getChildHtml') as $alias => $html):?>
+        <?php foreach ($this->getChildGroup('detailed_info', 'getChildHtml') as $alias => $html):?>
         <div class="box-collateral <?php echo "box-{$alias}"?>">
             <?php if ($title = $this->getChildData($alias, 'title')):?>
             <h2><?php echo $this->escapeHtml($title); ?></h2>
             <?php endif;?>
             <?php echo $html; ?>
         </div>
-<?php endforeach;?>
+        <?php endforeach;?>
     </div>
 </div>
