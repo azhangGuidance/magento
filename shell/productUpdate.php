@@ -44,8 +44,8 @@ class Mage_Shell_ProductUpdate extends Mage_Shell_Abstract
             $product = Mage::getModel('catalog/product')->load($product->getId());
             if(!$product->getLatitude() || !$product->getLongitude()){
                 Mage::helper('setup')->fetchProductCoordinates($product);
+                $product->save();
             }
-            echo $product->getName().'/n';
         }
         Mage::unregister('isSecureArea');
     }
