@@ -6,7 +6,7 @@ class Andu_Search_ResultController extends Mage_Core_Controller_Front_Action
 
     public function indexAction(){
         $query = $this->getRequest()->getParams();
-        if(isset($query['category_id']) && $query['category_id']){
+        if(isset($query['category_id']) && $query['category_id'] && isset($query['location']) && $query['location']){
             $category = Mage::getModel('catalog/category')->load($query['category_id']);
             if(Mage::registry('current_category')){
                 Mage::unregister('current_category');
@@ -23,6 +23,7 @@ class Andu_Search_ResultController extends Mage_Core_Controller_Front_Action
                 $this->renderLayout();
             }
         }else{
+            Mage::getSingleton('catalog/session')->addError($this->__('Location is not valid!'));
             $this->_redirectReferer();
         }
     }

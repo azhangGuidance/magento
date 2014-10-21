@@ -114,6 +114,9 @@
                         if($_product->getAddressDisplay()){
                            $marker.='<div class="address">'.$this->__($_product->getAddressDisplay()).'</div>';
                         }
+                        if($_product->getLatitude() && $_product->getLongitude()){
+                            $marker.='<a target="a_blank" href="https://www.google.com/maps?saddr=My+Location&daddr'.$_product->getLatitude().','.$_product->getLongitude().'">'.'Get Direction</a>';
+                        }
                         $marker=str_replace(array("\r\n", "\n", "\r"),' ',$marker);
                     ?>
                     <?php if($_product->getLatitude() && $_product->getLongitude()):?>

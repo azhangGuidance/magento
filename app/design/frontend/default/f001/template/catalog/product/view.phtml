@@ -80,7 +80,17 @@
                         });
                 marker.setMap(map);
                 map.setCenter(pos);
+                var infowindow = new google.maps.InfoWindow();
+                var direction = '<div style="line-height:1.35;overflow:hidden;white-space:nowrap;"><h3><?php echo $_product->getName()?></h3>';
+                direction+= '<a target="a_blank" href="https://www.google.com/maps?saddr=My+Location&daddr=<?php echo $_product->getLatitude()?>,<?php echo $_product->getLongitude()?>" >Get Direction</a></div>'
+                bindInfoWindow(marker, map, infowindow, direction);
 
+            }
+            function bindInfoWindow(marker, map, infowindow, strDescription) {
+                google.maps.event.addListener(marker, 'click', function() {
+                    infowindow.setContent(strDescription);
+                    infowindow.open(map, marker);
+                });
             }
             google.maps.event.addDomListener(window, 'load', initialize);
         </script>
@@ -148,5 +158,6 @@
             <?php echo $html; ?>
         </div>
         <?php endforeach;?>
+        <?php echo $this->getChildHtml('merchant_review') ?>
     </div>
 </div>
