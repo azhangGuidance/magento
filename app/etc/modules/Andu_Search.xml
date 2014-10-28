@@ -4,7 +4,6 @@
     <Andu_Search>
       <active>true</active>
       <codePool>local</codePool>
-      <version>1.0.0</version>
     </Andu_Search>
   </modules>
 </config>
