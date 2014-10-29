@@ -24,23 +24,14 @@
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 ?>
-<?php
-    $customer = $this->getCustomer();
-    if($customer->getImage()){
-        $imageUrl = Mage::getBaseUrl('media').'customer'.$customer->getImage();
-    }
-?>
-
 <div class="col2-set">
     <div class="box">
         <div class="col-1">
                 <div class="box-title">
-                    <h3><?php echo $this->__('Profile picture') ?></h3>
+                    <h3><?php echo $this->__('Profile Picture') ?></h3>
                 </div>
                 <div class="box-content">
-                    <?php if($imageUrl):?>
-                    <p><image class="profile-picture" width="340px" height="340px" title="Profile Image" src="<?php echo $imageUrl;?>"/></p>
-                    <?php endif;?>
+                    <?php echo $this->getLayout()->createBlock('profileimage/header_profileimage')->setTemplate('profileimage/customer/form.phtml')->toHtml();?>
                 </div>
         </div>
         <div class="col-2">
@@ -50,15 +41,15 @@
             </div>
             <div class="box-content">
                 <p>
-                    <?php echo $this->escapeHtml($customer->getName()) ?>
-                    <?php if($customer->getGender()):?>
-                    <?php echo $this->__(Mage::getResourceSingleton('customer/customer')->getAttribute('gender')->getSource()->getOptionText($customer->getGender()))?>
+                    <?php echo $this->escapeHtml($this->getCustomer()->getName()) ?>
+                    <?php if($this->getCustomer()->getGender()):?>
+                    <?php echo $this->__(Mage::getResourceSingleton('customer/customer')->getAttribute('gender')->getSource()->getOptionText($this->getCustomer()->getGender()))?>
                     <?php endif;?>
                     <br/>
-                    <?php if($customer->getDob()):?>
-                        <?php echo date("F j, Y",strtotime($customer->getDob())) ?><br/>
+                    <?php if($this->getCustomer()->getDob()):?>
+                        <?php echo date("F j, Y",strtotime($this->getCustomer()->getDob())) ?><br/>
                     <?php endif;?>
-                    <?php echo $this->escapeHtml($customer->getEmail()) ?><br/>
+                    <?php echo $this->escapeHtml($this->getCustomer()->getEmail()) ?><br/>
                 </p>
             </div>
         </div>

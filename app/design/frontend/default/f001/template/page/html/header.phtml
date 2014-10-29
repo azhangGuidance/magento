@@ -35,12 +35,13 @@
         <a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>" class="logo"><strong><?php echo $this->getLogoAlt() ?></strong><img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" /></a>
         <?php endif?>
         <div class="quick-access">
+            <?php echo $this->getChildHtml('header_profileimage') ?>
             <p class="welcome-msg"><?php echo $this->getChildHtml('welcome') ?> <?php echo $this->getAdditionalHtml() ?></p>
             <div class="shop-access">
             <?php echo $this->getChildHtml('topLinks') ?>
+            </div>
         </div>
-    </div>
         <?php echo $this->getChildHtml('store_language') ?>
-</div>
-<?php echo $this->getChildHtml('topMenu') ?>
+    </div>
+    <?php echo $this->getChildHtml('topMenu') ?>
 </div>
