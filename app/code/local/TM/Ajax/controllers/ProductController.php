@@ -32,10 +32,6 @@ class TM_Ajax_ProductController extends Mage_Catalog_ProductController
                     <div class='product-shop'>
                         <h3 class='product-name'>" . $product->getName() . "</h3>";
             
-            if($product->isSaleable()) {
-                $result .= "<button class='button' onclick=\"setLocation('".Mage::helper('checkout/cart')->getAddUrl($product)."')\"><span><span>".Mage::helper('catalog')->__('Add to Cart')."</span></span></button> OR  ";
-            }
-            
             if (Mage::helper('wishlist/data')->isAllow()) {
                 $result .= "<a href='".Mage::helper('wishlist/data')->getAddUrl($product)."'><span>".Mage::helper('catalog')->__('Add to Wishlist')."</span></a> <br/>";
             }
@@ -45,7 +41,7 @@ class TM_Ajax_ProductController extends Mage_Catalog_ProductController
             if ($product->getShortDescription()) {
 			
 				// $ShortDescription=$this->helper('catalog/output')->productAttribute($_product, $_product->getShortDescription(), 'short_description');
-                $result .= "<h4>".Mage::helper('catalog')->__('Quick Overview')."</h4>
+                $result .= "<h4>".Mage::helper('catalog')->__('Description')."</h4>
                 <div class='short-description'>" . nl2br($product->getShortDescription()). "</div>";
             }
             
