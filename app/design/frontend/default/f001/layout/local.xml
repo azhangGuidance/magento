@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default>
+        <reference name="top.links">
+            <remove name="checkout_cart_link" />
+        </reference>
+        <reference name="right">
+            <remove name="catalog.compare.sidebar"/>
+            <remove name="cart_sidebar"/>
+            <remove name="paypal.partner.right.logo"/>
+            <remove name="right.poll"/>
+            <remove name="right.reports.product.viewed"/>
+            <remove name="right.reports.product.compared"/>
+        </reference>
+    </default>
+    <review_product_list>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+        <reference name="product.info">
+            <block type="review/product_view_list" name="product.info.merchant_review" as="merchant_review" template="review/product/view/list.phtml">
+                <block type="review/form" name="product.review.form" as="review_form">
+                    <block type="page/html_wrapper" name="product.review.form.fields.before" as="form_fields_before" translate="label">
+                        <label>Review Form Fields Before</label>
+                        <action method="setMayBeInvisible"><value>1</value></action>
+                    </block>
+                </block>
+            </block>
+        </reference>
+    </review_product_list>
+    <review_product_view>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+    </review_product_view>
+    <customer_account>
+        <reference name="customer_account_navigation" >
+            <action method="removeLinkByName">
+                <name>account_edit</name>
+            </action>
+            <action method="removeLinkByName">
+                <name>billing_agreement</name>
+            </action>
+            <action method="removeLinkByName">
+                <name>downloadable_products</name>
+            </action>
+            <action method="removeLinkByName">
+                <name>newsletter</name>
+            </action>
+            <action method="removeLinkByName">
+                <name>orders</name>
+            </action>
+            <action method="removeLinkByName">
+                <name>tags</name>
+            </action>
+            <action method="removeLinkByName">
+                <name>OAuth Customer Tokens</name>
+            </action>
+            <action method="removeLinkByName">
+                <name>recurring_profiles</name>
+            </action>
+            <action method="removeLinkByName">
+                <name>billing_agreements</name>
+            </action>
+            <action method="updateLinkLabel">
+                <name>account</name>
+                <label>Personal Information</label>
+            </action>
+            <action method="updateLinkLabel">
+                <name>address_book</name>
+                <label>My Address</label>
+            </action>
+            <action method="updateLinkLabel">
+                <name>reviews</name>
+                <label>My Reviews</label>
+            </action>
+        </reference>
+    </customer_account>
+</layout>

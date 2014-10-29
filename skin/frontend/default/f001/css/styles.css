@@ -1770,3 +1770,41 @@ float:right; font-size:0.9em; margin-top:5px; padding:2px 2px 2px 0; width:125px
 /* ======================================================================================= */
 
 .guest-select {width:305px !important;}
+
+#home-google-map{
+    border: 1px solid #333;
+    height: 320px;
+    margin: 0px 50px 20px;
+    text-align: center;
+    width: 640px;
+}
+#merchant-list-google-map{
+    border: 1px solid #333;
+    height: 320px;
+    margin: 0px;
+    text-align: center;
+    width: 640px;
+}
+#search_mini_form .form-search{
+    border: 1px solid #333;
+    padding: 2px;
+    margin-bottom: 10px;
+}
+
+#search_mini_form .form-search input{
+    width:120px;
+    margin:5px 5px 5px 0;
+}
+#search_mini_form .form-search select{
+    width:120px;
+    margin:0 5px 5px 0;
+}
+#search_mini_form .form-search input#search-location{
+    margin-left:5px;
+}
+#merchant-map{
+    width: 400px;
+    height:200px;
+    float: left;
+    left:100px;
+}

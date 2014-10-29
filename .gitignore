@@ -1,11 +1,10 @@
 /var
-/media
+/media/*
+!/media/import
 /app/etc/local.xml
 /.idea
 *.*~
 *-swp
 .DS_Store
-.sass-cache
-/config/compass.rb
-/app/code/local/Zagg/Setup/data/zagg_setup/configurables
 /dev
+.htaccess

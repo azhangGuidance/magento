@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Andu_Review>
+            <version>1.0.0</version>
+        </Andu_Review>
+    </modules>
+    <frontend>
+        <routers>
+            <review>
+                <use>standard</use>
+                <args>
+                    <modules>
+                        <Andu_Review before="Mage_Review">Andu_Review</Andu_Review>
+                    </modules>
+                </args>
+            </review>
+        </routers>
+    </frontend>
+</config>
