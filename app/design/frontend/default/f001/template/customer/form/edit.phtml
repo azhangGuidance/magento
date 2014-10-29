@@ -24,17 +24,32 @@
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 ?>
+<?php
+$customer = $this->getCustomer();
+if($customer->getImage()){
+    $imageUrl = Mage::getBaseUrl('media').'customer'.$customer->getImage();
+}
+?>
 <div class="page-title">
     <h1><?php echo $this->__('Edit Account Information') ?></h1>
 </div>
 <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
-<form action="<?php echo $this->getUrl('customer/account/editPost') ?>" method="post" id="form-validate" autocomplete="off">
+<form action="<?php echo $this->getUrl('customer/account/editPost') ?>" method="post" id="form-validate" autocomplete="off" enctype="multipart/form-data">
     <div class="fieldset">
         <?php echo $this->getBlockHtml('formkey')?>
         <h2 class="legend"><?php echo $this->__('Account Information') ?></h2>
         <ul class="form-list">
             <li class="fields">
                 <?php echo $this->getLayout()->createBlock('customer/widget_name')->setObject($this->getCustomer())->toHtml() ?>
+            </li>
+            <li class="fields">
+                <?php if($imageUrl):?>
+                <image class="profile-picture" width="20px" height="20px" title="Profile Image" src="<?php echo $imageUrl;?>"/>
+                    <?php echo $this->__('Update your profile image:')?>
+                <?php else:?>
+                    <?php echo $this->__('Upload your profile image:')?>
+                <?php endif;?>
+                <input type="file" name="image" id="image">
             </li>
             <li>
                 <label for="email" class="required"><em>*</em><?php echo $this->__('Email Address') ?></label>
@@ -43,17 +58,14 @@
                 </div>
             </li>
         <?php $_dob = $this->getLayout()->createBlock('customer/widget_dob') ?>
-        <?php if ($_dob->isEnabled()): ?>
+
             <li><?php echo $_dob->setDate($this->getCustomer()->getDob())->toHtml() ?></li>
-        <?php endif ?>
-        <?php $_taxvat = $this->getLayout()->createBlock('customer/widget_taxvat') ?>
-        <?php if ($_taxvat->isEnabled()): ?>
-            <li><?php echo $_taxvat->setTaxvat($this->getCustomer()->getTaxvat())->toHtml() ?></li>
-        <?php endif ?>
+
         <?php $_gender = $this->getLayout()->createBlock('customer/widget_gender') ?>
-        <?php if ($_gender->isEnabled()): ?>
+
             <li><?php echo $_gender->setGender($this->getCustomer()->getGender())->toHtml() ?></li>
-        <?php endif ?>
+
+        <?php // image?>
             <li class="control">
                 <input type="checkbox" name="change_password" id="change_password" value="1" onclick="setPasswordForm(this.checked)" title="<?php echo $this->__('Change Password') ?>"<?php if($this->getCustomer()->getChangePassword()==1): ?> checked="checked"<?php endif; ?> class="checkbox" /><label for="change_password"><?php echo $this->__('Change Password') ?></label>
             </li>

@@ -36,6 +36,9 @@
     <customer_account>
         <reference name="customer_account_navigation" >
             <action method="removeLinkByName">
+                <name>address_book</name>
+            </action>
+            <action method="removeLinkByName">
                 <name>account_edit</name>
             </action>
             <action method="removeLinkByName">
@@ -65,10 +68,6 @@
             <action method="updateLinkLabel">
                 <name>account</name>
                 <label>Personal Information</label>
-            </action>
-            <action method="updateLinkLabel">
-                <name>address_book</name>
-                <label>My Address</label>
             </action>
             <action method="updateLinkLabel">
                 <name>reviews</name>

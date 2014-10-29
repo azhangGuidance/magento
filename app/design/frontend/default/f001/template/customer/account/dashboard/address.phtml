@@ -36,6 +36,7 @@
                 <?php foreach ($addresses as $address):?>
                     <address><?php echo $address->format('html')?></address>
                     <a href="<?php echo Mage::getUrl('customer/address/edit', array('id'=>$address->getId())) ?>"><?php echo $this->__('Edit Address') ?></a>
+                    <?php break;?>
                 <?php endforeach;?>
                 <?php else:?>
                     <p><?php echo $this->__('You have not set an address.')?></p>
