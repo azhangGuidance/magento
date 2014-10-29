@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout version="0.1.0">
+    <default>
+        <reference name="head">
+            <action method="addCss">
+                <stylesheet>css/sstech/profileimage.css</stylesheet>
+            </action>
+        </reference>
+        
+        <reference name="header">
+            <block type="profileimage/header_profileimage" name="header_profileimage" template="profileimage/header/profileimage.phtml"/>
+        </reference>
+    </default>
+</layout>
