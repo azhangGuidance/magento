@@ -71,8 +71,7 @@ class SSTech_Profileimage_Block_Header_Profileimage extends Mage_Core_Block_Temp
     public function getProfileimageHtml(){
         $html = "<img src='"
                 .$this->getProfileimagePath().
-                "' width ='".$this->getWidth()
-                ."' height='".$this->getHeight()
+                "' height='".$this->getHeight()
                 ."'/>";
         return $html; 
     }
