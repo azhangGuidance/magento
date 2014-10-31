@@ -260,7 +260,7 @@ input.input-text:focus,select:focus,textarea:focus { background-color:#edf7fd; }
 .form-list .customer-dob .dob-month input.input-text { width:46px; }
 .form-list .customer-dob .dob-year { width:140px; }
 .form-list .customer-dob .dob-year input.input-text { width:134px; }
-
+.customer-account-profile .back-button{margin:20px 0px}
 /* Independent fields */
 /*.form-list li { margin:0 0 8px; }
 .form-list li.fields { margin:0; }

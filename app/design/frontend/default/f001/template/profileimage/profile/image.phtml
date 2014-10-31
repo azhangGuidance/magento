@@ -1,0 +1,7 @@
+<?php if ($this->getProfileimage()): ?>
+<div class="profileimage-wrapper">
+    <img id="preview" src="<?php if ($this->getProfileimage()) {
+        echo $this->getProfileimagePath();
+    }?>" width="350"/>
+</div>
+<?php endif ?>
