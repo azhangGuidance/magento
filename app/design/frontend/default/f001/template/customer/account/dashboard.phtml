@@ -38,4 +38,14 @@
     </div>
     <?php echo $this->getChildHtml('info1') ?>
     <?php echo $this->getChildHtml('info2') ?>
+    <div>
+        <form id="profile_preview" action="<?php echo $this->getUrl('customer/account/profile')?>" method="post">
+            <input name="profile_id" type="hidden" value="<?php echo $this->getCustomer()->getId()?>"/>
+            <button type="submit" class="button" title="<?php echo $this->__('Preview') ?>" type="button">
+            <span>
+                <span><?php echo $this->__('Preview My profile') ?></span>
+            </span>
+            </button>
+        </form>
+    </div>
 </div>
