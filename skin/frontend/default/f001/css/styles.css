@@ -997,7 +997,7 @@ float:right; font-size:0.9em; margin-top:5px; padding:2px 2px 2px 0; width:125px
 .product-view .product-shop .short-description { margin:10px 0; background:url(../images/bkg_divider1.gif) 0 0 repeat-x; padding:10px 0 0; }
 .product-view .product-shop .price-box { margin:10px 0; }
 .product-view .product-shop .add-to-links { margin:0; }
-.product-view .product-shop .add-to-links { font-size:12px; text-align:right; }
+.product-view .product-shop .add-to-links { font-size:12px; }
 .product-view .product-shop .add-to-links li,
 .product-view .product-shop .add-to-links li .separator { display:inline; }
 .product-view .product-shop .add-to-links a { color:#1E7EC8 !important; font-weight:normal !important; }

@@ -11,6 +11,8 @@
             <remove name="right.poll"/>
             <remove name="right.reports.product.viewed"/>
             <remove name="right.reports.product.compared"/>
+            <remove name="wishlist_sidebar"/>
+            <remove name="cart_sidebar"/>
         </reference>
     </default>
     <review_product_list>
