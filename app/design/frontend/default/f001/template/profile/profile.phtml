@@ -8,6 +8,7 @@
         <div class="col-2">
             <div class="box-content">
                 <p>
+                    <?php echo $this->escapeHtml($this->getProfileCustomer()->getDisplayName()) ?><br/>
                     <?php echo $this->escapeHtml($this->getProfileCustomer()->getName()) ?><br/>
                     <?php if($this->getProfileCustomer()->getGender()):?>
                     <?php echo $this->__(Mage::getResourceSingleton('customer/customer')->getAttribute('gender')->getSource()->getOptionText($this->getProfileCustomer()->getGender()))?>
