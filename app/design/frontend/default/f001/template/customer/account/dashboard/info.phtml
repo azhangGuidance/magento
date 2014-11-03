@@ -41,6 +41,7 @@
             </div>
             <div class="box-content">
                 <p>
+                    <?php echo $this->escapeHtml($this->getCustomer()->getDisplayName()) ?><br/>
                     <?php echo $this->escapeHtml($this->getCustomer()->getName()) ?><br/>
                     <?php if($this->getCustomer()->getGender()):?>
                     <?php echo $this->__(Mage::getResourceSingleton('customer/customer')->getAttribute('gender')->getSource()->getOptionText($this->getCustomer()->getGender()))?>

@@ -102,6 +102,16 @@
             </block>
         </reference>
     </customer_account_index>
+    <customer_account_edit>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+    </customer_account_edit>
+    <customer_address_edit>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+    </customer_address_edit>
     <wishlist_index_index>
         <reference name="root">
             <action method="setTemplate"><template>page/1column.phtml</template></action>
