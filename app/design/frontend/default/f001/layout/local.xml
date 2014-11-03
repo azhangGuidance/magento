@@ -69,10 +69,42 @@
                 <name>account</name>
                 <label>Personal Information</label>
             </action>
-            <action method="updateLinkLabel">
+            <action method="removeLinkByName">
                 <name>reviews</name>
-                <label>My Reviews</label>
+            </action>
+            <action method="removeLinkByName">
+                <name>wishlist</name>
             </action>
         </reference>
     </customer_account>
+    <customer_account_index>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+        <reference name="customer_account_dashboard">
+            <block type="wishlist/customer_wishlist" name="customer.wishlist" template="customer/account/wishlist/view.phtml">
+                <action method="setTitle" translate="title">
+                    <title>My Wishlist</title>
+                </action>
+                <block type="wishlist/customer_wishlist_items" name="customer.wishlist.items" as="items" template="wishlist/item/list.phtml">
+                    <block type="wishlist/customer_wishlist_item_column_image" name="customer.wishlist.item.image" template="wishlist/item/column/image.phtml" />
+                    <block type="wishlist/customer_wishlist_item_column_comment" name="customer.wishlist.item.info" template="wishlist/item/column/info.phtml">
+                        <action method="setTitle" translate="title">
+                            <title>Product Details and Comment</title>
+                        </action>
+                    </block>
+                    <block type="wishlist/customer_wishlist_item_column_remove" name="customer.wishlist.item.remove" template="wishlist/item/column/remove.phtml" />
+                </block>
+                <block type="core/text_list" name="customer.wishlist.buttons" as="control_buttons">
+                    <block type="wishlist/customer_wishlist_button" name="customer.wishlist.button.share" template="wishlist/button/share.phtml" />
+                    <block type="wishlist/customer_wishlist_button" name="customer.wishlist.button.update" template="wishlist/button/update.phtml" />
+                </block>
+            </block>
+        </reference>
+    </customer_account_index>
+    <wishlist_index_index>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+    </wishlist_index_index>
 </layout>

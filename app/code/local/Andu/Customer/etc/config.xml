@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Andu_Customer>
+            <version>1.0.0</version>
+        </Andu_Customer>
+    </modules>
+    <global>
+        <blocks>
+            <andu_customer>
+                <class>Andu_Customer_Block</class>
+            </andu_customer>
+        </blocks>
+    </global>
+    <frontend>
+        <routers>
+            <customer>
+                <use>standard</use>
+                <args>
+                    <modules>
+                        <Andu_Customer before="Mage_Customer">Andu_Customer</Andu_Customer>
+                    </modules>
+                </args>
+            </customer>
+        </routers>
+        <layout>
+            <updates>
+                <andu_customer>
+                    <file>profile.xml</file>
+                </andu_customer>
+            </updates>
+        </layout>
+    </frontend>
+</config> 

@@ -34,8 +34,23 @@
     <div class="box-account box-info">
         <?php /* Extensions placeholder */ ?>
         <?php echo $this->getChildHtml('info') ?>
-        <?php echo $this->getChildHtml('address') ?>
+        <div class="col2-set">
+            <?php echo $this->getChildHtml('address') ?>
+            <?php echo $this->getLayout()->createBlock('review/customer_list')->setTemplate('customer/account/review/list.phtml')->toHtml() ?>
+        </div>
+        <?php echo $this->getChildHtml('customer.wishlist') ?>
+        <?php //echo $this->getChildHtml('customer.event')?>
     </div>
-    <?php echo $this->getChildHtml('info1') ?>
-    <?php echo $this->getChildHtml('info2') ?>
+    <?php //echo $this->getChildHtml('info1') ?>
+    <?php //echo $this->getChildHtml('info2') ?>
+    <div>
+        <form id="profile_preview" action="<?php echo $this->getUrl('customer/account/profile')?>" method="post">
+            <input name="profile_id" type="hidden" value="<?php echo $this->getCustomer()->getId()?>"/>
+            <button type="submit" class="button" title="<?php echo $this->__('Preview') ?>" type="button">
+            <span>
+                <span><?php echo $this->__('Preview My profile') ?></span>
+            </span>
+            </button>
+        </form>
+    </div>
 </div>
