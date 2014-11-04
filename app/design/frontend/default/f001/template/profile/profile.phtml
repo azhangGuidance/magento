@@ -1,3 +1,24 @@
+<?php
+    $customer = Mage::getModel('customer/session')->getCustomer();
+    $profile = $this->getProfileCustomer();
+    if($customer && $customer->getId()){
+         $relation = Mage::getModel('friend/relation')->getCollection()
+             ->addFieldToFilter('inviter_id',$customer->getId())
+             ->addFieldToFilter('target_id',$profile->getId())
+             ->getFirstItem();
+    }
+?>
+<?php if($customer->getId()!=$profile->getId()):?>
+<div class="box">
+    <?php if($relation && $relation->getStatus()==1):?>
+        <a href="<?php echo Mage::getBaseUrl().'friend/relation/remove/inviter/'.$customer->getId().'/target/'.$profile->getId()?>">
+            <?php echo $this->__('Remove This Friend.')?>
+        </a>
+    <?php else:?>
+        <a href="<?php echo Mage::getBaseUrl().'friend/relation/remove/inviter/'.$customer->getId().'/target/'.$profile->getId()?>"><?php echo $this->__('Send Friend Request.') ?></a>
+    <?php endif;?>
+</div>
+<?php endif;?>
 <div class="col2-set">
     <div class="box">
         <div class="col-1">
@@ -8,17 +29,17 @@
         <div class="col-2">
             <div class="box-content">
                 <p>
-                    <?php echo $this->escapeHtml($this->getProfileCustomer()->getDisplayName()) ?><br/>
-                    <?php echo $this->escapeHtml($this->getProfileCustomer()->getName()) ?><br/>
-                    <?php if($this->getProfileCustomer()->getGender()):?>
-                    <?php echo $this->__(Mage::getResourceSingleton('customer/customer')->getAttribute('gender')->getSource()->getOptionText($this->getProfileCustomer()->getGender()))?>
+                    <?php echo $this->escapeHtml($profile->getDisplayName()) ?><br/>
+                    <?php echo $this->escapeHtml($profile->getName()) ?><br/>
+                    <?php if($profile->getGender()):?>
+                    <?php echo $this->__(Mage::getResourceSingleton('customer/customer')->getAttribute('gender')->getSource()->getOptionText($profile->getGender()))?>
                     <?php endif;?>
                     <br/>
-                    <?php if($this->getProfileCustomer()->getDob()):?>
-                    <?php echo date("F j, Y",strtotime($this->getProfileCustomer()->getDob())) ?><br/>
+                    <?php if($profile->getDob()):?>
+                    <?php echo date("F j, Y",strtotime($profile->getDob())) ?><br/>
                     <?php endif;?>
-                    <?php echo $this->escapeHtml($this->getProfileCustomer()->getEmail()) ?><br/>
-                    <?php $addresses = $this->getProfileCustomer()->getAddresses()?>
+                    <?php echo $this->escapeHtml($profile->getEmail()) ?><br/>
+                    <?php $addresses = $profile->getAddresses()?>
                     <?php if(count($addresses)):?>
                     <?php foreach ($addresses as $address):?>
                         <address>
@@ -32,6 +53,9 @@
         </div>
     </div>
 </div>
+    <div id="profile-friends">
+        <?php echo $this->getLayout()->createBlock('friend/list')->setTemplate('profile/friend/list.phtml')->toHtml() ?>
+    </div>
 <div id="profile-reviews">
     <?php echo $this->getLayout()->createBlock('review/customer_list')->setTemplate('profile/review/list.phtml')->toHtml() ?>
 </div>

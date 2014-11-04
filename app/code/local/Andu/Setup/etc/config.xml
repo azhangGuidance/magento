@@ -15,6 +15,16 @@
                     <account_navigation>Andu_Setup_Block_Customer_Account_Navigation</account_navigation>
                 </rewrite>
             </customer>
+            <review>
+                <rewrite>
+                    <customer_list>Andu_Setup_Block_Review_Customer_List</customer_list>
+                </rewrite>
+            </review>
+            <wishlist>
+                <rewrite>
+                    <customer_wishlist>Andu_Setup_Block_Customer_Wishlist</customer_wishlist>
+                </rewrite>
+            </wishlist>
         </blocks>
         <helpers>
             <setup>

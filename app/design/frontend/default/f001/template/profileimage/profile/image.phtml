@@ -1,7 +1,9 @@
-<?php if ($this->getProfileimage()): ?>
 <div class="profileimage-wrapper">
+    <?php if ($this->getProfileimage()): ?>
     <img id="preview" src="<?php if ($this->getProfileimage()) {
         echo $this->getProfileimagePath();
     }?>" width="350"/>
+        <?php else:?>
+        <p><?php echo $this->__('No avatar available.')?></p>
+    <?php endif ?>
 </div>
-<?php endif ?>

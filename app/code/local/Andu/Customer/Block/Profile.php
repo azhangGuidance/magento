@@ -3,7 +3,12 @@
 class Andu_Customer_Block_Profile extends Mage_Core_Block_Template
 {
     public function getProfileCustomer(){
-        return Mage::registry('current_profile');
+        if(Mage::registry('current_profile')){
+            return Mage::registry('current_profile');
+        }elseif($this->getRequest()->getParam('profile_id')){
+            return Mage::getCustomer('customer/customer')->load($this->getRequest()->getParam('profile_id'));
+        }
+
     }
 
     public function render(Mage_Customer_Model_Address_Abstract $address)

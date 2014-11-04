@@ -1808,3 +1808,13 @@ float:right; font-size:0.9em; margin-top:5px; padding:2px 2px 2px 0; width:125px
     float: left;
     left:100px;
 }
+.box{
+    padding:10px 0;
+}
+li.friends-list{
+    display:inline;
+    margin-right: 20px;
+}
+li.friends-list a{
+    text-decoration:none ;
+}
