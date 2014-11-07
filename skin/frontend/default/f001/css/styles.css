@@ -1818,3 +1818,30 @@ li.friends-list{
 li.friends-list a{
     text-decoration:none ;
 }
+#friend-search-field label{
+    font-size: 14px;
+    margin-right:5px;
+}
+#friend-search-field input{
+    width:200px;
+}
+#search-result li{
+    clear:both;
+    margin-top:5px;
+}
+#search-result li img{
+    float:left;
+    margin-right:20px;
+}
+#search-result li span.display-name{
+    float:left;
+    width:80px;
+}
+#search-result li button.view-profile-button {
+    float:left;
+    margin-right:20px;
+    width:120px;
+}
+#search-result li button {
+    width:200px;
+}

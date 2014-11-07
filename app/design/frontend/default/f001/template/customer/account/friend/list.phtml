@@ -17,9 +17,9 @@
                             $name = $friend->getName();
                         }
                     ?>
-                    <a href="<?php echo $this->getUrl('customer/account/profile').'profile_id/'.$friendId?>" class="friend-list"><?php echo $name?>
-                        <?php $src = $this->getUrl('profileimage/customer/viewProfileimage').'id/'.$friendId?>
-                        <img style="margin-left:10px; width:20px;" src=<?php echo $src?>/>
+                    <a href="<?php echo $this->getUrl('customer/account/profile').'profile_id/'.$friendId?>" class="friend-list">
+                        <?php $src = $this->getUrl('profileimage/customer/viewProfileimage',array('id'=>$friendId))?>
+                        <img style="margin-right:10px; width:20px;" src=<?php echo $src?>/><span class="display-name"><?php echo $name?><span>
                     </a>
                 </li>
                 <?php endforeach ?>
@@ -28,7 +28,7 @@
                 <p><?php echo $this->__('You have not add any friend.') ?></p>
             <?php endif;?>
             <div class="fieldset">
-                <a href="<?php echo $this->getUrl('friend/search/index')?>"><?php echo $this->__('Find friends')?></a>
+                <a href="<?php echo Mage::getBaseUrl().'friend/relation/search'?>"><?php echo $this->__('Find friends')?></a>
             </div>
         </div>
     </div>

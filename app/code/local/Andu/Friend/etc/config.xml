@@ -15,6 +15,13 @@
                 </args>
             </friend>
         </routers>
+        <layout>
+            <updates>
+                <friend>
+                    <file>friend.xml</file>
+                </friend>
+            </updates>
+        </layout>
     </frontend>
     <global>
         <helpers>
