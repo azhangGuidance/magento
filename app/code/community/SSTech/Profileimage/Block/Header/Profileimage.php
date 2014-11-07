@@ -6,8 +6,11 @@ class SSTech_Profileimage_Block_Header_Profileimage extends Mage_Core_Block_Temp
     
     public function __construct() {
         parent::__construct();
-        $customer = $this->getCustomerFromSession();
-        $this->getCustomerFromSession();
+        if ($customerId = $this->getRequest()->getParam('profile_id')){
+            $customer = Mage::getModel('customer/customer')->load($customerId);
+        }else{
+            $customer = $this->getCustomerFromSession();
+        }
        
         if($customer){
             $customerObj = Mage::getModel('customer/customer')->load($customer->getId());

@@ -1,0 +1,35 @@
+<div class="box">
+    <div class="col-2">
+        <div class="box-title">
+            <h3><?php echo $this->__('My Friends') ?></h3>
+        </div>
+        <div class="box-content">
+            <?php $friends = $this->getFriends()?>
+            <?php if(count($friends)):?>
+            <ul>
+                <?php foreach ($friends as $friendId):?>
+                <li class="friends-list">
+                    <?php $friend = Mage::getModel('customer/customer')->load($friendId)?>
+                    <?php
+                        if($friend->getDisplayName()){
+                            $name = $friend->getDisplayName();
+                        }else{
+                            $name = $friend->getName();
+                        }
+                    ?>
+                    <a href="<?php echo $this->getUrl('customer/account/profile').'profile_id/'.$friendId?>" class="friend-list">
+                        <?php $src = $this->getUrl('profileimage/customer/viewProfileimage',array('id'=>$friendId))?>
+                        <img style="margin-right:10px; width:20px;" src=<?php echo $src?>/><span class="display-name"><?php echo $name?><span>
+                    </a>
+                </li>
+                <?php endforeach ?>
+            </ul>
+            <?php else:?>
+                <p><?php echo $this->__('You have not add any friend.') ?></p>
+            <?php endif;?>
+            <div class="fieldset">
+                <a href="<?php echo Mage::getBaseUrl().'friend/relation/search'?>"><?php echo $this->__('Find friends')?></a>
+            </div>
+        </div>
+    </div>
+</div>

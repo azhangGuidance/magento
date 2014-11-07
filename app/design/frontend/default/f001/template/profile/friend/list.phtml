@@ -1,0 +1,28 @@
+<div class="box">
+    <div class="col-1">
+        <div class="box-content">
+            <?php $friends = $this->getFriends()?>
+            <?php if(count($friends)):?>
+            <h3><?php echo $this->__('Friends')?></h3>
+            <ul>
+                <?php foreach ($friends as $friendId):?>
+                <li class="friends-list">
+                    <?php $friend = Mage::getModel('customer/customer')->load($friendId)?>
+                    <?php
+                        if($friend->getDisplayName()){
+                            $name = $friend->getDisplayName();
+                        }else{
+                            $name = $friend->getName();
+                        }
+                    ?>
+                    <a href="<?php echo $this->getUrl('customer/account/profile').'profile_id/'.$friendId?>" class="friend-list"><?php echo $name?>
+                        <?php $src = $this->getUrl('profileimage/customer/viewProfileimage').'id/'.$friendId?>
+                        <img style="margin-left:10px; width:20px;" src=<?php echo $src?>/>
+                    </a>
+                </li>
+                <?php endforeach ?>
+            </ul>
+            <?php endif;?>
+        </div>
+    </div>
+</div>

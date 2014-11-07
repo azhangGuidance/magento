@@ -48,6 +48,9 @@ class SSTech_Profileimage_CustomerController extends Mage_Core_Controller_Front_
         }
         $path = Mage::getBaseDir('media') . DS . 'customer';
         $file = $customer->getData(SSTech_Profileimage_Model_Config::Profileimage_ATTR_CODE);
+        if(!$file){
+            $file = '/default.jpg';
+        }
         $ioFile = new Varien_Io_File();
         $ioFile->open(array('path' => $path));
         $fileName = $ioFile->getCleanPath($path . $file);

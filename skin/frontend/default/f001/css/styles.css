@@ -1808,3 +1808,40 @@ float:right; font-size:0.9em; margin-top:5px; padding:2px 2px 2px 0; width:125px
     float: left;
     left:100px;
 }
+.box{
+    padding:10px 0;
+}
+li.friends-list{
+    display:inline;
+    margin-right: 20px;
+}
+li.friends-list a{
+    text-decoration:none ;
+}
+#friend-search-field label{
+    font-size: 14px;
+    margin-right:5px;
+}
+#friend-search-field input{
+    width:200px;
+}
+#search-result li{
+    clear:both;
+    margin-top:5px;
+}
+#search-result li img{
+    float:left;
+    margin-right:20px;
+}
+#search-result li span.display-name{
+    float:left;
+    width:80px;
+}
+#search-result li button.view-profile-button {
+    float:left;
+    margin-right:20px;
+    width:120px;
+}
+#search-result li button {
+    width:200px;
+}

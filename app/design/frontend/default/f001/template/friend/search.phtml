@@ -1,0 +1,57 @@
+<div id="friend-search-field" class="fieldset">
+    <label><?php echo $this->__('Key Word:')?></label>
+    <input id="search-friend-query" type="text" value="" name="q" placeholder="<?php echo $this->__('Type friend name, nickname, etc.')?>"/>
+    <span id="search-friend-val" style="display:none;color:red"><?php echo $this->__('This field can not be empty!')?></span>
+    <br/>
+    <button id="search-friend-button" class="button" type="button"><span><span>
+            <?php echo $this->__('Find')?>
+        </span></span></button>
+</div>
+
+    <div id="friend-action-result">
+        <?php echo $this->getMessagesBlock()->getGroupedHtml();?>
+    </div>
+
+    <div id="search-result">
+        <?php $friends = $this->getFriends()?>
+        <?php if($friends && $friends->count()):?>
+        <ul>
+            <?php foreach($friends as $friend):?>
+            <?php
+            $src = Mage::getUrl('profileimage/customer/viewProfileimage',array('id'=>$friend->getId()));
+            $profileUrl = Mage::getUrl('customer/account/profile').'profile_id/'.$friend->getId();
+            $removeUrl = Mage::getBaseUrl().'friend/relation/remove?friend='.$friend->getId().'&q='.Mage::registry('current_friend_search_query');
+            $inviteUrl = Mage::getBaseUrl().'friend/relation/invite?friend='.$friend->getId().'&q='.Mage::registry('current_friend_search_query');
+            ?>
+            <li><img style= "width:20px;" src="<?php echo $src?>"/>
+            <?php if($friend->getDisplayName()):?>
+                <span class="display-name"><?php echo $friend->getDisplayName()?></span>
+                <?php else: ?>
+                <span class="display-name"><?php echo $friend->getFirstname()?></span>;
+                <?php endif?>
+            <button class="button view-profile-button" onclick="window.location.href='<?php echo $profileUrl?>'">
+                <span><span><?php echo $this->__("View Profile")?></span></span></button>
+            <?php if(Mage::helper('friend')->isFriend($friend)):?>
+                <button onclick="window.location.href='<?php echo $removeUrl?>'" class="remove-friend-button button"><span><span><?php echo $this->__("Remove this friend")?></span></span></button></li>
+                <?php else:?>
+                <button onclick="window.location.href='<?php echo $inviteUrl?>'"  class="invite-friend-button button"><span><span><?php echo $this->__("Send friend invitation")?></span></span></button></li>
+                <?php endif;?>
+            <?php endforeach;?>
+        </ul>
+        <?php endif;?>
+    </div>
+<script type="text/javascript">
+    jQuery('#search-friend-button').click(function(){
+        var query = jQuery('#search-friend-query').val();
+        if(!query){
+            jQuery('#search-friend-val').show();
+        }else{
+            jQuery('#search-friend-val').hide();
+            jQuery.ajax({
+                url: "<?php echo $this->getResultUrl().'?q='?>"+query
+            }).done(function(data) {
+                jQuery('#search-result').html(data);
+            })
+        }
+    })
+</script>

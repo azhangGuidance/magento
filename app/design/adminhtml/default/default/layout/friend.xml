@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+  <friend_adminhtml_invite_index>
+	<reference name="content">
+	  <block type="friend/adminhtml_invite" name="invite" />
+	</reference>
+  </friend_adminhtml_invite_index>
+</layout>

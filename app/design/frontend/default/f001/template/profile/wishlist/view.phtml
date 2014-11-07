@@ -34,9 +34,17 @@
         <div class="box-content">
             <form id="wishlist-view-form" action="<?php echo $this->getUrl('*/*/update', array('wishlist_id' => $this->getWishlistInstance()->getId())) ?>" method="post">
                 <fieldset>
-                    <?php if ($this->hasWishlistItems()): ?>
+                    <?php
+                        if ($customerId = $this->getRequest()->getParam('profile_id')){
+                            $customer = Mage::getModel('customer/customer')->load($customerId);
+                        }else{
+                            $customer = Mage::getSingleton('customer/session')->getCustomer();
+                        }
+                        $items = Mage::getModel('wishlist/wishlist')->loadByCustomer($customer)->getItemCollection()
+                    ?>
+                    <?php if ($items->count()): ?>
                             <?php echo $this->getBlockHtml('formkey');?>
-                            <?php $this->getChild('items')->setItems($this->getWishlistItems()); ?>
+                            <?php $this->getChild('items')->setItems($items); ?>
                             <?php echo $this->getChildHtml('items');?>
                             <script type="text/javascript">decorateTable('wishlist-table')</script>
                     <?php else: ?>

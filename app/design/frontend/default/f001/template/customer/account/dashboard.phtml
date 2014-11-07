@@ -36,8 +36,9 @@
         <?php echo $this->getChildHtml('info') ?>
         <div class="col2-set">
             <?php echo $this->getChildHtml('address') ?>
-            <?php echo $this->getLayout()->createBlock('review/customer_list')->setTemplate('customer/account/review/list.phtml')->toHtml() ?>
+            <?php echo $this->getLayout()->createBlock('friend/list')->setTemplate('customer/account/friend/list.phtml')->toHtml() ?>
         </div>
+        <?php echo $this->getLayout()->createBlock('review/customer_list')->setTemplate('customer/account/review/list.phtml')->toHtml() ?>
         <?php echo $this->getChildHtml('customer.wishlist') ?>
         <?php //echo $this->getChildHtml('customer.event')?>
     </div>
