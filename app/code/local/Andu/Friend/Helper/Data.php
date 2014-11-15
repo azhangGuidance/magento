@@ -32,5 +32,17 @@ class Andu_Friend_Helper_Data extends Mage_Core_Helper_Abstract
     public function getCustomer(){
         return Mage::getSingleton('customer/session')->getCustomer();
     }
+
+    public function getPendingFriendInvite(){
+        $invite = array();
+        $customer = $this->getCustomer();
+        if($customer && $customer->getId()){
+            $invite = Mage::getModel('friend/invite')->getCollection()
+            ->addFieldToFilter('target_id',$customer->getId())
+            ->addFieldToFilter('status',0);
+
+        }
+        return $invite;
+    }
 }
 	 

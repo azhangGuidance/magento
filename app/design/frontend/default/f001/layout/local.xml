@@ -3,6 +3,7 @@
     <default>
         <reference name="top.links">
             <remove name="checkout_cart_link" />
+            <remove name="wishlist_link"/>
         </reference>
         <reference name="right">
             <remove name="catalog.compare.sidebar"/>
@@ -13,6 +14,10 @@
             <remove name="right.reports.product.compared"/>
             <remove name="wishlist_sidebar"/>
             <remove name="cart_sidebar"/>
+        </reference>
+        <reference name="head">
+            <action method="addItem"><type>skin_js</type><name>js/jquery.fancybox.js</name></action>
+            <action method="addItem"><type>skin_css</type><name>css/jquery.fancybox.css</name></action>
         </reference>
     </default>
     <review_product_list>
