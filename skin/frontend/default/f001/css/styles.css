@@ -1845,3 +1845,19 @@ li.friends-list a{
 #search-result li button {
     width:200px;
 }
+#send-meesage-form label{
+    text-align:left;
+}
+#send-meesage-form input{
+    width:150px;
+    padding-bottom:10px;
+}
+#send-meesage-form textarea{
+    width:200px;
+}
+#send-meesage-form button{
+    margin-top:10px;
+}
+.fancybox-inner{
+    text-align: left;;
+}

@@ -17,8 +17,9 @@ class Andu_Friend_RelationController extends Mage_Core_Controller_Front_Action
                     Mage::getSingleton('customer/session')->addSuccess($this->__('Friend removed successfully!'));
                 }
             }
+        }else{
+            Mage::getSingleton('customer/session')->addError($this->__('Failed to remove friend, please try again later!'));
         }
-        Mage::getSingleton('customer/session')->addError($this->__('Failed to remove friend, please try again later!'));
         $this->_redirect('*/*/search',array('q'=>$q));
     }
 
@@ -117,4 +118,51 @@ class Andu_Friend_RelationController extends Mage_Core_Controller_Front_Action
         }
         return $html;
     }
+
+    public function processAction() {
+        $inviterId = $this->getRequest()->getParam('inviter');
+        $actionType = $this->getRequest()->getParam('actionType');
+        $customer = $this->getCustomer();
+        if($inviterId && $customer && $customer->getId() && $actionType){
+            $invite = Mage::getModel('friend/invite')->getCollection()
+                ->addFieldToFilter('inviter_id',$inviterId)
+                ->addFieldToFilter('target_id',$customer->getId())
+                ->getFirstItem();
+            if($invite && $invite->getId()){
+                $invite->setStatus(1)->save();
+                $relation = Mage::getModel('friend/relation')->getCollection()
+                    ->addFieldToFilter('inviter_id',$inviterId)
+                    ->addFieldToFilter('target_id',$customer->getId())
+                    ->getFirstItem();
+                if($actionType == 4){
+                    $relation->setStatus(3);
+                }elseif($actionType == 3){
+                    $relation->setStatus(2);
+                }else{
+                    $relation->setStatus(1);
+                }
+                $relation->save();
+                if($actionType ==1){
+                    $inviteBack = Mage::getModel('friend/invite')->getCollection()
+                        ->addFieldToFilter('inviter_id',$customer->getId())
+                        ->addFieldToFilter('target_id',$inviterId)
+                        ->getFirstItem();
+                    if(!$inviteBack){
+                        Mage::getModel('friend/invite')
+                            ->setInviterId($customer->getId())
+                            ->setTargetId($inviterId)
+                            ->setStatus(0)
+                            ->save();
+                    }
+                }
+                Mage::getSingleton('customer/session')->addSuccess($this->__('Request process success.'));
+
+            }
+        }else{
+            Mage::getSingleton('customer/session')->addError($this->__('There is some problem with the process, please try again later!'));
+        }
+
+        $this->_redirect('customer/account/index');
+    }
+
 }

@@ -15,10 +15,11 @@
                             $name = $friend->getName();
                         }
                     ?>
-                    <a href="<?php echo $this->getUrl('customer/account/profile').'profile_id/'.$friendId?>" class="friend-list"><?php echo $name?>
+                    <a href="<?php echo $this->getUrl('customer/account/profile').'profile_id/'.$friendId?>" class="friend-list">
                         <?php $src = $this->getUrl('profileimage/customer/viewProfileimage').'id/'.$friendId?>
-                        <img style="margin-left:10px; width:20px;" src=<?php echo $src?>/>
+                        <img style="margin-left:10px; width:20px;" src=<?php echo $src?>/><?php echo $name?>
                     </a>
+
                 </li>
                 <?php endforeach ?>
             </ul>

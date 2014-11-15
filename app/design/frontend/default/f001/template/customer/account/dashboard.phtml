@@ -29,10 +29,10 @@
         <h1><?php echo $this->__('Personal Information') ?></h1>
     </div>
     <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
-    <?php echo $this->getChildHtml('hello') ?>
     <?php echo $this->getChildHtml('top') ?>
     <div class="box-account box-info">
         <?php /* Extensions placeholder */ ?>
+        <?php echo $this->getChildHtml('hello') ?>
         <?php echo $this->getChildHtml('info') ?>
         <div class="col2-set">
             <?php echo $this->getChildHtml('address') ?>

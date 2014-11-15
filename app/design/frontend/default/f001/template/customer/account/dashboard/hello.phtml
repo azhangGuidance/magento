@@ -24,5 +24,52 @@
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 ?>
-
-Notification(You have pending friend request.)
+<?php $invitation = Mage::helper('friend')->getPendingFriendInvite() ?>
+<?php if ($invitation->count()): ?>
+<div class="box">
+    <div class="col-1">
+        <div class="box-title">
+            <h3><?php echo $this->__('Pending friend request.')?></h3>
+        </div>
+        <div class="box-content">
+            <ul>
+                <?php foreach ($invitation as $item): ?>
+                <li class="friends-list">
+                    <?php
+                    $request = Mage::getModel('customer/customer')->load($item->getInviterId());
+                    if ($request->getDisplayName()) {
+                        $name = $request->getDisplayName();
+                    } else {
+                        $name = $request->getName();
+                    }
+                    $profileUrl = Mage::getUrl('customer/account/profile') . 'profile_id/' . $request->getId();
+                    $actionUrl = Mage::getBaseUrl() . 'friend/relation/process?inviter=' . $request->getId();
+                    ?>
+                    <a href="<?php echo $this->getUrl('customer/account/profile') . 'profile_id/' . $request->getId()?>"
+                       class="friend-list">
+                        <?php $src = $this->getUrl('profileimage/customer/viewProfileimage', array('id' => $request->getId()))?>
+                        <img style="margin-right:10px; width:20px;" src=<?php echo $src?>/>
+                        <span class="display-name"><?php echo $name?></span>
+                    </a>
+                    <select name="actionType">
+                        <?php echo $this->__('Action')?>
+                        <?php if(!Mage::helper('friend')->isFriend($request)):?>
+                            <option vale=1><?php echo $this->__("Accept and send request back")?></option>
+                        <?php endif;?>
+                        <option value=2><?php echo $this->__("Accept the request")?></option>
+                        <option value=3><?php echo $this->__("Ignore the request")?></option>
+                        <option value=4><?php echo $this->__("Reject the request")?></option>
+                    </select>
+                    <button onclick="processFriendRequest(this)" class="button"><span><span><?php echo $this->__('submit') ?></span></span></button>
+                </li>
+                <?php endforeach?>
+            </ul>
+        </div>
+    </div>
+</div>
+<?php endif; ?>
+<script type="text/javascript">
+    function processFriendRequest(element){
+        window.location.href='<?php echo $actionUrl?>'+'&actionType='+jQuery(element).prev().val()
+    }
+</script>
